@@ -91,9 +91,11 @@
                       </li>
                     </ul>
                 </li>
-
+                <form id="logout-form" action="{{ route('logout') }}" method="GET" style="display: none;">
+                    @csrf
+                </form>
                 <li class="nav-item ">
-                    <a href="#" class="nav-link bg-danger">
+                    <a href="#" class="nav-link bg-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="nav-icon fas fa-power-off"></i>
                         <p>
                             Logout

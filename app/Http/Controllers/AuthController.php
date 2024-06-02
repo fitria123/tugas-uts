@@ -49,7 +49,7 @@ class AuthController extends Controller
             $user = Auth::user();
             // cek lagi jika level user admin maka arahkan ke halaman admin
             if ($user->level == 'admin') {
-                return redirect()->intended('admin');
+                return redirect()->intended('dashboard');
             }
             // tapi jika level user nya user biasa maka arahkan ke halaman user
             else if ($user->level == 'kasir') {
