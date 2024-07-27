@@ -49,14 +49,20 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', [DashboardController::class,'index']);
         
         //User
-        Route::get('/user', [UserController::class,'index']);
-        Route::get('/user/tambah', [UserController::class,'tambah']);
-        Route::get('/user/edit/{id}', [UserController::class,'edit']);
+        Route::get('/user', [UserController::class,'index'])->name('users.index');
+        Route::get('/user/create', [UserController::class,'create'])->name('users.create');
+        Route::post('/users', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');;
+        Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
         
-        //Menu
-        Route::get('/menu', [MenuController::class,'index']);
-        Route::get('/menu/tambah', [MenuController::class,'tambah']);
-        Route::get('/menu/edit/{id}', [MenuController::class,'edit']);
+        //Menu using AJAX
+        Route::get('/menu', [MenuController::class,'index'])->name('menu.index');
+        Route::post('/menu/tambah', [MenuController::class,'tambah'])->name('menu.tambah');
+        Route::get('/menu/{id}', [MenuController::class, 'show'])->name('menu.show');
+        Route::put('/menu/{id}', [MenuController::class, 'update'])->name('menu.update');
+        Route::delete('/menus/{id}', [MenuController::class, 'destroy'])->name('menus.destroy');
+
 
         //Transaksi
         Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');

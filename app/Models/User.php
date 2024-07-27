@@ -19,8 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'level'
     ];
 
     /**
@@ -42,4 +44,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function transaksis()
+    {
+        return $this->hasMany(Transaksi::class, 'user_id');  // Mengacu pada 'user_id' di tabel transaksis
+    }
 }

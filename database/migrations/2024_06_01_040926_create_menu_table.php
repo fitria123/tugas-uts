@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('menu');
             $table->integer('harga')->default(0);
-            $table->timestamp('create_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });
     }

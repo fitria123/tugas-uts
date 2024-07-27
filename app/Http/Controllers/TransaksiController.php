@@ -13,7 +13,7 @@ class TransaksiController extends Controller
     public function index(){
         // dd(Transaksi::all());
         return view('admin.transaksi.index', [
-            'transaksis' => Transaksi::all()
+            'transaksis' => Transaksi::with('operator', 'items')->get()
         ]);
     }
 

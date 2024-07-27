@@ -17,6 +17,7 @@
                         <li class="breadcrumb-item active">Daftar User</li>
                     </ol>
                 </div>
+                
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -29,11 +30,20 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="col-2">
-                                        <button type="button" class="btn btn-block btn-primary">Tambah User</button>  
+                                <a href="{{ route('users.create') }}" class="btn btn-block btn-success">Tambah User</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -45,26 +55,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>John Doe</td>
-                                        <td>john@example.com</td>
-                                        <td>john</td>
-                                        <td>Kasir</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary"> <i class="fas fa-edit"></i> Edit</a>
-                                            <a href="#" class="btn btn-danger"> <i class="fas fa-trash"></i> Hapus </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fitria Alfiana</td>
-                                        <td>falfiana57@gmail.com</td>
-                                        <td>fitria</td>
-                                        <td>Admin</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary"> <i class="fas fa-edit"></i> Edit</a>
-                                            <a href="#" class="btn btn-danger"> <i class="fas fa-trash"></i> Hapus </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($users as $user)
+                                        <tr>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->username }}</td>
+                                            <td>{{ $user->level }}</td>
+                                            <td>
+                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i>Edit</a>
+                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

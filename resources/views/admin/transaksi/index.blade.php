@@ -41,6 +41,7 @@
                                             <th>Item</th>
                                             <th>Total Harga</th>
                                             <th>Tanggal</th>
+                                            <th>Operator</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -59,6 +60,7 @@
                                                 </td>
                                                 <td>Rp. {{ number_format($transaksi->total_harga)}}</td>
                                                 <td>{{ $transaksi->created_at->toDayDateTimeString() }}</td>
+                                                <td>{{ $transaksi->operator ? $transaksi->operator->name : 'N/A' }}</td>
                                                 <td>
                                                     <form action="{{route('transaksi.destroy',$transaksi->id)}}" class="d-inline" method="POST">
                                                         @csrf
