@@ -16,7 +16,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Fitria Alfiana</a>
+                <a href="#" class="d-block">{{ Auth::user()->name }} | {{ ucfirst(Auth::user()->level) }}</a>
             </div>
         </div>
 

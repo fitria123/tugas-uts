@@ -43,6 +43,12 @@ Route::group(['middleware' => ['auth']], function () {
     // Kasir
     Route::get('/kasir', [KasirController::class, 'index']);
 
+    //Transaksi
+    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+    Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
+    Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
+    Route::delete('destroy/{id}', [TransaksiController::class,'destroy'])->name('transaksi.destroy');
+     
     Route::group(['middleware' => ['cek_login:admin']], function ()
     {
         //Dashboard
@@ -64,11 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/menus/{id}', [MenuController::class, 'destroy'])->name('menus.destroy');
 
 
-        //Transaksi
-        Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-        Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
-        Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
-        Route::delete('destroy/{id}', [TransaksiController::class,'destroy'])->name('transaksi.destroy');
+       
     });
 });
 
