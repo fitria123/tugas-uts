@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menu', function (Blueprint $table) {
+        Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->string('menu');
-            $table->integer('harga')->default(0);
-            $table->timestamp('create_at')->useCurrent();
-            $table->timestamp('updated_at')->nullable();
+            $table->string('transaksi_code')->unique();
+            $table->unsignedBigInteger('user_id');
+            $table->integer('total_harga');
+            $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menu');
+        Schema::dropIfExists('transaksis');
     }
 };

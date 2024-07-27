@@ -5,6 +5,9 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KasirController;
+use App\Http\Controllers\TransaksiController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +35,11 @@ Route::post('proses_login', [AuthController::class, 'proses_login'])->name('pros
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
+    
+    Route::get('/', function () {
+        return view('dashboard.index');
+    });
+    
     // Kasir
     Route::get('/kasir', [KasirController::class, 'index']);
 
@@ -49,6 +57,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/menu', [MenuController::class,'index']);
         Route::get('/menu/tambah', [MenuController::class,'tambah']);
         Route::get('/menu/edit/{id}', [MenuController::class,'edit']);
+
+        //Transaksi
+        Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+        Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
+        Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
+        Route::delete('destroy/{id}', [TransaksiController::class,'destroy'])->name('transaksi.destroy');
     });
 });
 

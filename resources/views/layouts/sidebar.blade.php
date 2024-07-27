@@ -34,6 +34,7 @@
                         </p>
                     </a>
                 </li>
+                @if(Auth::user()->level == 'admin')
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-table"></i>
@@ -61,6 +62,7 @@
                       </li>
                     </ul>
                 </li>
+                @endif
 
 
 
@@ -74,7 +76,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="/menu" class="nav-link">
+                        <a href="/transaksi/create" class="nav-link">
                             <i class="nav-icon fas fa-cart-plus"></i>
                             <p>
                                 Tambah Transaksi
@@ -82,7 +84,7 @@
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="/menu" class="nav-link">
+                        <a href="/transaksi" class="nav-link">
                             <i class="nav-icon fas fa-shopping-cart"></i>
                             <p>
                                 Daftar Transaksi

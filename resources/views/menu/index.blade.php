@@ -28,7 +28,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="/menu/tambah" class="btn btn-success"> <i class="fas fa-plus"></i> Tambah Menu </a>
+                            <a href="/menu/tambah" class="btn btn-success" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> <i class="fas fa-plus"></i> Tambah Menu </a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
